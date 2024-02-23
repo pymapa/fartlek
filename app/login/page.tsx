@@ -1,6 +1,5 @@
 import React from "react";
-import stravaIcon from "../../public/icons/strava-icon.svg";
-import Image from "next/image";
+import LoginWithStrava from "../components/LoginWithStrava";
 
 const Login = () => {
   return (
@@ -22,10 +21,7 @@ const LoginForm = () => {
           >
             Sign in
           </h1>
-          <button className="btn mt-4">
-            Sign in with Strava
-            <Image src={stravaIcon} alt="Strava" width={25} />
-          </button>
+          <LoginWithStrava />
         </div>
       </div>
     </div>
