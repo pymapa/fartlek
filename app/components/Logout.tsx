@@ -4,9 +4,9 @@ import React from "react";
 
 const Logout = () => {
   return (
-    <div>
+    <div className="flex min-w-full justify-center">
       <button
-        className="btn mt-4"
+        className="btn btn-wide btn-neutral-content"
         onClick={async () => {
           await signOut({ callbackUrl: "/login" });
         }}
