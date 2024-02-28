@@ -8,6 +8,7 @@ import { JWT } from "next-auth/jwt";
 import { OAuthUserConfig } from "next-auth/providers/oauth";
 import Strava, { StravaProfile } from "next-auth/providers/strava";
 import strava, { RefreshTokenResponse } from "strava-v3";
+import logger from "../../logger";
 
 const stravaScope = process.env.STRAVA_SCOPE as string;
 
@@ -18,7 +19,7 @@ const stravaOptions: OAuthUserConfig<StravaProfile> = {
 };
 
 const refreshAccessToken = async (token: JWT): Promise<JWT> => {
-  console.log("Refreshing access token");
+  logger.debug("Refreshing access token");
   strava.config({
     access_token: token.accessToken as string,
     client_id: process.env.NEXT_PUBLIC_STRAVA_CLIENT_ID as string,
@@ -30,7 +31,8 @@ const refreshAccessToken = async (token: JWT): Promise<JWT> => {
   try {
     refreshedToken = await strava.oauth.refreshToken(token.refreshToken as string);
   } catch (error) {
-    console.error("Failed to refresh access token", error);
+    logger.error("Failed to refresh access token");
+    logger.debug(error);
     return token;
   }
 
@@ -44,6 +46,7 @@ const refreshAccessToken = async (token: JWT): Promise<JWT> => {
 
 const callBacks: NextAuthOptions["callbacks"] = {
   jwt: async ({ token, user, account }) => {
+  logger.debug("JWT callback");
     if (account && user) {
       token.accessToken = account.access_token;
       token.refreshToken = account.refresh_token;
@@ -59,6 +62,7 @@ const callBacks: NextAuthOptions["callbacks"] = {
     return refreshAccessToken(token);
   },
   session: async ({ session, token }) => {
+    logger.debug("Session callback");
     session.accessToken = token.accessToken;
     return session;
   },
