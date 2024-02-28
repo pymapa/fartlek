@@ -54,12 +54,14 @@ const callBacks: NextAuthOptions["callbacks"] = {
         token.accessTokenExpires = account.expires_at;
       }
     }
+    const nowInSeconds = Date.now() / 1000;
+    const istTokenExpired = token.accessToken && token.accessTokenExpires && nowInSeconds > token.accessTokenExpires;
 
-    if (token.accessTokenExpires && Date.now() > token.accessTokenExpires) {
-      return token
+    if (istTokenExpired) {
+      return refreshAccessToken(token);
     }
 
-    return refreshAccessToken(token);
+    return token;
   },
   session: async ({ session, token }) => {
     logger.debug("Session callback");
@@ -89,4 +91,13 @@ const auth = (
   return getServerSession(...args, authOptions);
 };
 
-export { authOptions, auth };
+const getAccessToken = async (): Promise<string> => {
+  const session = await auth();
+  if (!session || !session.accessToken) {
+    logger.error("Access token not found");
+    throw new Error("Access token not found");
+  }
+  return session?.accessToken;
+}
+
+export { authOptions, auth, getAccessToken };
