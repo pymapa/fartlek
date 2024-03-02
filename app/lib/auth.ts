@@ -54,11 +54,11 @@ const callBacks: NextAuthOptions["callbacks"] = {
         token.accessTokenExpires = account.expires_at;
       }
     }
-    const nowInSeconds = Date.now() / 1000;
+    const nowInSeconds = Math.floor(Date.now() / 1000);
     const istTokenExpired = token.accessToken && token.accessTokenExpires && nowInSeconds > token.accessTokenExpires;
 
     if (istTokenExpired) {
-      return refreshAccessToken(token);
+      return await refreshAccessToken(token);
     }
 
     return token;
