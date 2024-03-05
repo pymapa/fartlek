@@ -20,7 +20,7 @@ const getAthlete = async (accessToken: string): Promise<AthleteResponse> => {
 const getActivities = async (
   accessToken: string,
   args?: StravaQueryArgs
-): Promise<Array<ActivitySummary>> => {
+): Promise<ActivitySummary[]> => {
   logger.info(`Fetching activities for user`);
   return strava.athlete.listActivities({ access_token: accessToken, ...args });
 };

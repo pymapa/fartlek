@@ -73,8 +73,8 @@ export type ActivitySummary = {
   elev_high: number;
   elev_low: number;
   sport_type: SportType;
-  start_date: Date;
-  start_date_local: Date;
+  start_date: string;
+  start_date_local: string;
   timezone: string;
   start_latlng: Array<number>;
   end_latlng: Array<number>;
