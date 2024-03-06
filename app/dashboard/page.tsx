@@ -11,8 +11,6 @@ const getLastMonthActivities = async (
 ): Promise<ActivitySummary[]> => {
   const args: StravaQueryArgs = {
     after: Math.floor(Date.now() / 1000) - 2592000,
-    page: 1,
-    per_page: 10,
   };
   return await getActivities(accessToken, args);
 };
