@@ -35,15 +35,15 @@ const dravChart = (activities: ActivitySummary[]) => {
 
   const xScale = d3
     .scaleBand()
-    // .domain(activities.map((a) => a.start_date))
     .domain(getXAxis())
     .rangeRound([0, 960]);
   const yScale = d3
     .scaleLinear()
-    .domain([0, getMaxElapsedTime(activities)])
-    .range([500, 0]);
+    .domain([0, getMaxElapsedTime(activities) - 50])
+    .range([500, 0])
+    .nice();
 
-  const bars = container
+  container
     .selectAll("rect")
     .data(activities)
     .enter()
@@ -64,7 +64,11 @@ const OverviewChart = ({ activities }: { activities: ActivitySummary[] }) => {
     return <p>No activities found</p>;
   }
 
-  return <svg id="overview_chart" className="w-2/4 h-1/3"></svg>;
+  return (
+    <div className="">
+      <svg id="overview_chart" className=""></svg>
+    </div>
+  )
 };
 
 export default OverviewChart;

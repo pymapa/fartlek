@@ -4,6 +4,8 @@ import OverviewChart from '../components/OverviewChart';
 import { getAccessToken } from '../lib/auth';
 import { ActivitySummary } from '../lib/types/strava';
 import { StravaQueryArgs, getActivities } from '../lib/client/strava';
+import LatestActivities from '../components/LatestActivities';
+import DashboardItem from '../components/DashboardItem';
 
 
 const getLastMonthActivities = async (
@@ -21,8 +23,13 @@ const Dashboard = async () => {
   const activities = await getLastMonthActivities(token);
 
   return (
-    <div className='flex flex-wrap justify-between w-full border border-black px-16 pt-32 '>
-      <OverviewChart activities={activities} />
+    <div className='flex flex-wrap items-start justify-between w-full px-16 pt-32 '>
+      <DashboardItem title='Last month' width={2}>
+        <OverviewChart activities={activities} />
+      </DashboardItem>
+      <DashboardItem title="Latest activities" width={1}>
+        <LatestActivities activities={activities} />
+      </DashboardItem>
     </div>
   )
 }
