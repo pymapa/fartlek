@@ -67,7 +67,7 @@ const OverviewChart = ({ activities }: { activities: ActivitySummary[] }) => {
   }
 
   return (
-    <div className="flex">
+    <div className="flex flex-wrap md:flex-nowrap">
       {/* Side panel */}
       <SidePanel activities={activities} />
       {/* Chart */}
@@ -85,7 +85,7 @@ const SidePanel = ({ activities }: { activities: ActivitySummary[] }) => {
   };
 
   return (
-    <div className="w-2/5 flex-col pt-10 flex justify-between items-center">
+    <div className="w-full md:w-2/5 flex-col pt-10 flex justify-between items-center">
       <div className="w-full">
         <div>
           <h3 className="font-extrabold text-3xl text-accent">
