@@ -12,11 +12,13 @@ const DashboardItem = ({ width, title, children }: DashboardItemProps) => {
       className={`p-2
       md:p-4
       w-full 
+      h-96
       ${width === 1 && "md:w-1/3"}
       ${width === 2 && "md:w-2/3"}
       `}
     >
       <div className="
+      h-full
       bg-neutral
       text-neutral-content
       p-4

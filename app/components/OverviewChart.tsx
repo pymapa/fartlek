@@ -2,6 +2,7 @@
 import React, { useEffect } from "react";
 import { ActivitySummary } from "../lib/types/strava";
 import * as d3 from "d3";
+import Link from "next/link";
 
 const dravChart = (activities: ActivitySummary[]) => {
   const getMaxElapsedTime = (activities: ActivitySummary[]) => {
@@ -104,7 +105,7 @@ const SidePanel = ({ activities }: { activities: ActivitySummary[] }) => {
         </div>
       </div>
       <div className="w-full flex justify-start">
-        <button className="btn">View all activities</button>
+        <Link href={'/dashboard/activities'} className="btn">View all activities</Link>
       </div>
     </div>
   );

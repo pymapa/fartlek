@@ -25,4 +25,12 @@ const getActivities = async (
   return strava.athlete.listActivities({ access_token: accessToken, ...args });
 };
 
-export { getAthlete, getActivities };
+const getActivity = async (
+  accessToken: string,
+  id: number
+): Promise<DetailedActivityResponse> => {
+  logger.info(`Fetching activity for user`);
+  return strava.activities.get({ id, access_token: accessToken });
+}
+
+export { getAthlete, getActivities, getActivity };

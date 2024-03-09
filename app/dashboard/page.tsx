@@ -23,7 +23,7 @@ const Dashboard = async () => {
   const activities = await getLastMonthActivities(token);
 
   return (
-    <div className='flex flex-wrap items-start justify-between w-full px-16 pt-32 '>
+    <div className='flex flex-wrap items-start justify-between w-full'>
       <DashboardItem title='Last 30 days' width={2}>
         <OverviewChart activities={activities} />
       </DashboardItem>
