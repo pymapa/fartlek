@@ -24,7 +24,7 @@ const Dashboard = async () => {
 
   return (
     <div className='flex flex-wrap items-start justify-between w-full px-16 pt-32 '>
-      <DashboardItem title='Last month' width={2}>
+      <DashboardItem title='Last 30 days' width={2}>
         <OverviewChart activities={activities} />
       </DashboardItem>
       <DashboardItem title="Latest activities" width={1}>

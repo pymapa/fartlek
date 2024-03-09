@@ -13,7 +13,7 @@ const dravChart = (activities: ActivitySummary[]) => {
 
   const removeTimeFromDate = (date: string): string => {
     return date.split("T")[0];
-  }
+  };
 
   const getXAxis = (): string[] => {
     const now = new Date();
@@ -21,7 +21,7 @@ const dravChart = (activities: ActivitySummary[]) => {
       const day = new Date(
         now.getFullYear(),
         now.getMonth(),
-        now.getDate() - i
+        now.getDate() - (i - 1)
       );
       return day.toISOString().split("T")[0];
     });
@@ -33,10 +33,7 @@ const dravChart = (activities: ActivitySummary[]) => {
     .attr("preserveAspectRatio", "xMinYMin meet")
     .attr("viewBox", "0 0 960 500");
 
-  const xScale = d3
-    .scaleBand()
-    .domain(getXAxis())
-    .rangeRound([0, 960]);
+  const xScale = d3.scaleBand().domain(getXAxis()).rangeRound([0, 960]);
   const yScale = d3
     .scaleLinear()
     .domain([0, getMaxElapsedTime(activities) - 50])
@@ -60,15 +57,57 @@ const OverviewChart = ({ activities }: { activities: ActivitySummary[] }) => {
     dravChart(activities);
   }, [activities]);
 
+  const getCumulativeMinutes = (activities: ActivitySummary[]) => {
+    return activities.reduce((acc, a) => acc + a.moving_time, 0);
+  };
+
   if (!activities) {
     return <p>No activities found</p>;
   }
 
   return (
-    <div className="">
-      <svg id="overview_chart" className=""></svg>
+    <div className="flex">
+      {/* Side panel */}
+      <SidePanel activities={activities} />
+      {/* Chart */}
+      <svg
+        id="overview_chart"
+        className="border-b border-b-neutral-content"
+      ></svg>
     </div>
-  )
+  );
+};
+
+const SidePanel = ({ activities }: { activities: ActivitySummary[] }) => {
+  const getCumulativeMinutes = (activities: ActivitySummary[]) => {
+    return activities.reduce((acc, a) => acc + a.moving_time, 0);
+  };
+
+  return (
+    <div className="w-2/5 flex-col pt-10 flex justify-between items-center">
+      <div className="w-full">
+        <div>
+          <h3 className="font-extrabold text-3xl text-accent">
+            {new Date(getCumulativeMinutes(activities) * 1000)
+              .toISOString()
+              .substring(11, 19)}
+          </h3>
+          <p>Cumulative moving time</p>
+        </div>
+      </div>
+      <div className="w-full">
+        <div>
+          <h3 className="font-extrabold text-3xl text-accent">
+            {activities.length}
+          </h3>
+          <p>Activities</p>
+        </div>
+      </div>
+      <div className="w-full flex justify-start">
+        <button className="btn">View all activities</button>
+      </div>
+    </div>
+  );
 };
 
 export default OverviewChart;

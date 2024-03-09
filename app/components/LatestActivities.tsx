@@ -18,13 +18,12 @@ const LatestActivities = ({activities}: {activities: ActivitySummary[]}) => {
 
 const ActivityRow = ({activity}: {activity: ActivitySummary}) => {
   return (
-    <div className='flex justify-between py-4 border-b'>
+    <div className='flex justify-between py-4 border-b border-b-neutral-content'>
       <div>
         <h3>{activity.name}</h3>
         <p>{Intl.DateTimeFormat("fi-FI").format(new Date(activity.start_date))}</p>
       </div>
       <div>
-        {/* Time in H.mm.ss */}
         <p>{new Date(activity.moving_time * 1000).toISOString().substr(11, 8)}</p>
       </div>
     </div>
