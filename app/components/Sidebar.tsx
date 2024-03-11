@@ -5,10 +5,21 @@ import NavLinks from "./NavLinks";
 
 const Sidebar = () => {
   return (
-    <div className="
+    <div
+      className="
       hidden
       md:flex
-      justify-center items-center flex-row flex-wrap invisible md:visible w-1/4 bg-gradient-to-br from-accent-content to-accent">
+      justify-center 
+      items-center 
+      flex-row 
+      flex-wrap 
+      invisible 
+      md:visible 
+      w-1/4 
+      bg-gradient-to-br 
+      from-accent-content 
+      to-accent"
+    >
       <Profile />
       <NavLinks />
       <Logout />

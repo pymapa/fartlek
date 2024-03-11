@@ -12,23 +12,30 @@ const DashboardItem = ({ width, title, children }: DashboardItemProps) => {
       className={`p-2
       md:p-4
       w-full 
-      h-auto
-      md:h-96
       ${width === 1 && "md:w-1/3"}
       ${width === 2 && "md:w-2/3"}
       `}
     >
       <div className="
-      h-full
+      flex
+      flex-col
       bg-neutral
       text-neutral-content
       p-4
       md:p-8
       rounded-lg
       shadow-md
+      h-auto
+      md:h-96
       ">
-        {title && <h2 className="text-lg font-bold mb-4">{title}</h2>}
-        {children}
+        {title && (
+          <div className="h-10">
+            <h2 className="text-lg font-bold">{title}</h2>
+          </div>
+        )}
+        <div className="h-full">
+          {children}
+        </div>
       </div>
     </div>
   );

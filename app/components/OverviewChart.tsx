@@ -58,23 +58,19 @@ const OverviewChart = ({ activities }: { activities: ActivitySummary[] }) => {
     dravChart(activities);
   }, [activities]);
 
-  const getCumulativeMinutes = (activities: ActivitySummary[]) => {
-    return activities.reduce((acc, a) => acc + a.moving_time, 0);
-  };
-
   if (!activities) {
     return <p>No activities found</p>;
   }
 
   return (
-    <div className="flex flex-wrap md:flex-nowrap">
-      {/* Side panel */}
+    <div className="flex h-full flex-wrap justify-between md:flex-nowrap">
       <SidePanel activities={activities} />
-      {/* Chart */}
-      <svg
-        id="overview_chart"
-        className="border-b border-b-neutral-content"
-      ></svg>
+      <div className="w-full h-full flex items-end">
+        <svg
+          id="overview_chart"
+          className="border-b border-b-neutral-content"
+        ></svg>
+      </div>
     </div>
   );
 };
@@ -85,7 +81,7 @@ const SidePanel = ({ activities }: { activities: ActivitySummary[] }) => {
   };
 
   return (
-    <div className="w-full md:w-2/5 flex-col pt-10 flex justify-between items-center">
+    <div className="w-full md:w-2/5 flex-col pt-8 flex justify-between items-center">
       <div className="w-full">
         <div>
           <h3 className="font-extrabold text-3xl text-accent">
@@ -105,7 +101,9 @@ const SidePanel = ({ activities }: { activities: ActivitySummary[] }) => {
         </div>
       </div>
       <div className="w-full flex justify-start">
-        <Link href={'/dashboard/activities'} className="btn">View all activities</Link>
+        <Link href={"/dashboard/activities"} className="btn">
+          View all activities
+        </Link>
       </div>
     </div>
   );

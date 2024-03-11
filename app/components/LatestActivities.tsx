@@ -55,23 +55,20 @@ const ActivityRow = ({ activity }: { activity: ActivitySummary }) => {
 const OverlayButton = ({ visible, activityId }: { visible: boolean, activityId: number }) => {
   return (
     <Link href={`/dashboard/activities/${activityId}`} prefetch className={`
+      ${visible ? "w-40 right-0 border-l border-neutral-content" : "w-0 -right-full p-0 "}
+      absolute 
       flex items-center justify-center
       text-neutral-content
-      ${visible ? "w-40" : "-right-full p-0 w-0"}
-      absolute 
       bg-neutral
       bg-opacity-60
       hover:bg-opacity-90
       hover:text-accent
       backdrop-blur-sm
-      gap-0
       rounded-none
       transition-all 
       duration-300 
       top-0 h-full 
-      right-0
       shadow-md
-      border-l border-neutral-content
       `}>
         <p>View activity</p>
       

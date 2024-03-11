@@ -42,4 +42,4 @@ const getActivity = async (
   return strava.activities.get({ id, access_token: accessToken });
 }
 
-export { getAthlete, getActivities,  };
+export { getAthlete, getActivities, getActivity };
