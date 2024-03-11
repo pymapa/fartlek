@@ -101,7 +101,7 @@ const SidePanel = ({ activities }: { activities: ActivitySummary[] }) => {
         </div>
       </div>
       <div className="w-full flex justify-start">
-        <Link href={"/dashboard/activities"} className="btn">
+        <Link href={"/activities"} className="btn">
           View all activities
         </Link>
       </div>

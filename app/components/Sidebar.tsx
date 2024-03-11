@@ -1,7 +1,7 @@
 import React from "react";
-import Profile from "./Profile";
-import Logout from "./Logout";
-import NavLinks from "./NavLinks";
+import Profile from "../dashboard/Profile";
+import Logout from "../dashboard/Logout";
+import NavLinks from "../dashboard/NavLinks";
 
 const Sidebar = () => {
   return (

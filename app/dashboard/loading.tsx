@@ -1,10 +1,9 @@
 import React from 'react'
+import PageLoader from '../components/PageLoader'
 
 const loading = () => {
   return (
-    <div className='w-full h-full flex items-center justify-center'>
-      <span className='loading loading-dots loading-lg'></span>
-    </div>
+    <PageLoader />
   )
 }
 

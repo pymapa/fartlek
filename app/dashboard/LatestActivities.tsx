@@ -44,7 +44,7 @@ const ActivityRow = ({ activity }: { activity: ActivitySummary }) => {
       </div>
       <div>
         <p>
-          {new Date(activity.moving_time * 1000).toISOString().substr(11, 8)}
+          {new Date(activity.moving_time * 1000).toISOString().substring(11, 19)}
         </p>
       </div>
       <OverlayButton visible={isHovered} activityId={activity.id} />
@@ -54,7 +54,7 @@ const ActivityRow = ({ activity }: { activity: ActivitySummary }) => {
 
 const OverlayButton = ({ visible, activityId }: { visible: boolean, activityId: number }) => {
   return (
-    <Link href={`/dashboard/activities/${activityId}`} prefetch className={`
+    <Link href={`/activities/${activityId}`} prefetch className={`
       ${visible ? "w-40 right-0 border-l border-neutral-content" : "w-0 -right-full p-0 "}
       absolute 
       flex items-center justify-center
