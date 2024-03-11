@@ -1,5 +1,5 @@
 import React from "react";
-import LoginWithStrava from "../components/LoginWithStrava";
+import LoginWithStrava from "./LoginWithStrava";
 
 const Login = () => {
   return (

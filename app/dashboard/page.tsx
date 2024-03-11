@@ -1,11 +1,11 @@
 "use server"
 import React from 'react'
-import OverviewChart from '../components/OverviewChart';
+import OverviewChart from './OverviewChart';
 import { getAccessToken } from '../lib/auth';
 import { ActivitySummary } from '../lib/types/strava';
 import { StravaQueryArgs, getActivities } from '../lib/client/strava';
-import LatestActivities from '../components/LatestActivities';
-import DashboardItem from '../components/DashboardItem';
+import LatestActivities from './LatestActivities';
+import DashboardItem from './DashboardItem';
 
 
 const getLastMonthActivities = async (
