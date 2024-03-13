@@ -10,7 +10,8 @@ const ActivitiesLayout = ({children}: {children: ReactNode}) => {
       py-4
       md:px-16 
       md:py-16 
-      w-full'>
+      w-full
+      overflow-scroll'>
       {children}
     </div>
   </div>
