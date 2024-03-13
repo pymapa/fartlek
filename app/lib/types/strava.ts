@@ -1,8 +1,12 @@
 import { z } from "zod";
-import { activitySummarySchema, sportTypeSchema } from "../schemas/strava";
+import { activitySchema, activitySummarySchema, polylineMapSchema, sportTypeSchema } from "../schemas/strava";
 
 type SportType = z.infer<typeof sportTypeSchema>;
 
 type ActivitySummary = z.infer<typeof activitySummarySchema>;
 
-export type { SportType, ActivitySummary };
+type ActivityDetails = z.infer<typeof activitySchema>;
+
+type PolylineMap = z.infer<typeof polylineMapSchema>;
+
+export type { SportType, ActivitySummary, ActivityDetails, PolylineMap };

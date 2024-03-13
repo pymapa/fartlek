@@ -83,21 +83,21 @@ const SidePanel = ({ activities }: { activities: ActivitySummary[] }) => {
   return (
     <div className="w-full md:w-2/5 flex-col pt-8 flex justify-between items-center">
       <div className="w-full">
-        <div>
-          <h3 className="font-extrabold text-3xl text-accent">
+        <div className="stat">
+          <h3 className="stat-value text-accent">
             {new Date(getCumulativeMinutes(activities) * 1000)
               .toISOString()
               .substring(11, 19)}
           </h3>
-          <p>Cumulative moving time</p>
+          <div className="stat-title">Cumulative moving time</div>
         </div>
       </div>
       <div className="w-full">
-        <div>
-          <h3 className="font-extrabold text-3xl text-accent">
+        <div className="stat">
+          <div className="stat-value text-accent">
             {activities.length}
-          </h3>
-          <p>Activities</p>
+          </div>
+          <div className="stat-title">Activities</div>
         </div>
       </div>
       <div className="w-full flex justify-start">

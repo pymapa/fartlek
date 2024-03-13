@@ -1,7 +1,7 @@
 import strava, { AthleteResponse, DetailedActivityResponse } from "strava-v3";
-import { ActivitySummary } from "../types/strava";
+import { ActivityDetails, ActivitySummary } from "../types/strava";
 import logger from "@/logger";
-import { getActivitiesResponseSchema } from "../schemas/strava";
+import { activitySchema, getActivitiesResponseSchema } from "../schemas/strava";
 
 export type StravaQueryArgs = {
   before?: number;
@@ -37,9 +37,15 @@ const getActivities = async (
 const getActivity = async (
   accessToken: string,
   id: number
-): Promise<DetailedActivityResponse> => {
+): Promise<ActivityDetails> => {
   logger.info(`Fetching activity for user`);
-  return strava.activities.get({ id, access_token: accessToken });
+  const activity = await strava.activities.get({ id, access_token: accessToken });
+  const validatedActivity = activitySchema.safeParse(activity);
+  if (!validatedActivity.success) {
+    throw new Error(`Failed to validate activity response: ${validatedActivity.error}`);
+  }
+
+  return validatedActivity.data;
 }
 
 export { getAthlete, getActivities, getActivity };
