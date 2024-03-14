@@ -6,6 +6,7 @@ import { ActivitySummary } from '../lib/types/strava';
 import { StravaQueryArgs, getActivities } from '../lib/client/strava';
 import LatestActivities from './LatestActivities';
 import DashboardItem from './DashboardItem';
+import ActivityTypes from './ActivityTypes';
 
 
 const getLastMonthActivities = async (
@@ -29,6 +30,9 @@ const Dashboard = async () => {
       </DashboardItem>
       <DashboardItem title="Latest activities" width={1}>
         <LatestActivities activities={activities} />
+      </DashboardItem>
+      <DashboardItem title="Activity types" width={1}>
+        <ActivityTypes activities={activities} />
       </DashboardItem>
     </div>
   )

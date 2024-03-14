@@ -9,7 +9,7 @@ const DashboardLayout = ({children}: {children: ReactNode}) => {
         px-8
         pt-16
         md:px-16 
-        md:pt-32 
+        md:pt-24
         w-full'>
         {children}
       </div>

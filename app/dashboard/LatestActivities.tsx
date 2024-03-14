@@ -15,14 +15,16 @@ const LatestActivities = ({
           new Date(b.start_date).getTime() - new Date(a.start_date).getTime()
         );
       })
-      .slice(0, 3);
+      .slice(0, 8);
   };
 
   return (
-    <div className="w-full">
-      {getLatestActivities(activities).map((activity) => (
-        <ActivityRow activity={activity} key={activity.id} />
-      ))}
+    <div className="w-full h-full pb-4">
+      <div className="w-full h-full overflow-scroll">
+        {getLatestActivities(activities).map((activity) => (
+          <ActivityRow activity={activity} key={activity.id} />
+        ))}
+      </div>
     </div>
   );
 };
@@ -44,7 +46,9 @@ const ActivityRow = ({ activity }: { activity: ActivitySummary }) => {
       </div>
       <div>
         <p>
-          {new Date(activity.moving_time * 1000).toISOString().substring(11, 19)}
+          {new Date(activity.moving_time * 1000)
+            .toISOString()
+            .substring(11, 19)}
         </p>
       </div>
       <OverlayButton visible={isHovered} activityId={activity.id} />
@@ -52,10 +56,23 @@ const ActivityRow = ({ activity }: { activity: ActivitySummary }) => {
   );
 };
 
-const OverlayButton = ({ visible, activityId }: { visible: boolean, activityId: number }) => {
+const OverlayButton = ({
+  visible,
+  activityId,
+}: {
+  visible: boolean;
+  activityId: number;
+}) => {
   return (
-    <Link href={`/activities/${activityId}`} prefetch className={`
-      ${visible ? "w-40 right-0 border-l border-neutral-content" : "w-0 -right-full p-0 "}
+    <Link
+      href={`/activities/${activityId}`}
+      prefetch
+      className={`
+      ${
+        visible
+          ? "w-40 right-0 border-l border-neutral-content"
+          : "w-0 -right-full p-0 "
+      }
       absolute 
       flex items-center justify-center
       text-neutral-content
@@ -69,9 +86,9 @@ const OverlayButton = ({ visible, activityId }: { visible: boolean, activityId: 
       duration-300 
       top-0 h-full 
       shadow-md
-      `}>
-        <p>View activity</p>
-      
+      `}
+    >
+      <p>View activity</p>
     </Link>
   );
 };

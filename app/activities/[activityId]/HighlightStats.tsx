@@ -1,4 +1,7 @@
+'use client'
 import { ActivityDetails, SportType } from "@/app/lib/types/strava";
+import { metersPerSecondToKmPerHour } from "@/app/lib/utils";
+import { useEffect } from "react";
 
 const HiglightStats = ({ activity }: { activity: ActivityDetails }) => {
   const distanceSportTypes: SportType[] = [
@@ -33,6 +36,10 @@ const HiglightStats = ({ activity }: { activity: ActivityDetails }) => {
   const showDistance = distanceSportTypes.includes(activity.sport_type);
   const showElevation = elevationSportTypes.includes(activity.sport_type);
 
+  useEffect(() => {
+    console.log("Activity", activity);
+  }, [activity]);
+
   return (
     <div className="flex flex-wrap w-full justify-between">
       <Stat value={activity.max_heartrate.toString()} label="Max HR" />
@@ -44,7 +51,7 @@ const HiglightStats = ({ activity }: { activity: ActivityDetails }) => {
         <Stat value={activity.total_elevation_gain.toFixed(1) + " m"} label="Elevation" />
       )}
       <Stat value={(activity.moving_time / 60).toFixed() + " min"} label="Moving Time" />
-      <Stat value={activity.average_speed.toFixed(2) + " km/h"} label="Avg Speed" />
+      <Stat value={metersPerSecondToKmPerHour(activity.average_speed) + " km/h"} label="Avg Speed" />
     </div>
   );
 };

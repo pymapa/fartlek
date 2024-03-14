@@ -50,7 +50,7 @@ const dravChart = (activities: ActivitySummary[]) => {
     .attr("height", (a) => 500 - yScale(a.elapsed_time))
     .attr("x", (a) => xScale(removeTimeFromDate(a.start_date)) || 0)
     .attr("y", (a) => yScale(a.elapsed_time))
-    .classed("fill-teal-700", true);
+    .classed("fill-cyan-800", true);
 };
 
 const OverviewChart = ({ activities }: { activities: ActivitySummary[] }) => {
