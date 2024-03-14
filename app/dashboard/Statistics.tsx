@@ -3,7 +3,6 @@ import { Stats } from "../lib/types/strava";
 import { metersToKilometers } from "../lib/utils";
 
 const Statistics = ({ stats }: { stats: Stats }) => {
-  console.log(stats);
   return (
     <div className="flex flex-col h-full justify-between py-8 w-full">
       <StatRow label="Ride distance" value={metersToKilometers(stats.ytd_ride_totals.distance)} unit="km" />
