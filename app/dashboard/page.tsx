@@ -1,12 +1,14 @@
 "use server"
 import React from 'react'
 import OverviewChart from './OverviewChart';
-import { getAccessToken } from '../lib/auth';
+import { getAccessToken, getLoggedInAthlete } from '../lib/auth';
 import { ActivitySummary } from '../lib/types/strava';
-import { StravaQueryArgs, getActivities } from '../lib/client/strava';
+import { StravaQueryArgs, getActivities, getStats } from '../lib/client/strava';
 import LatestActivities from './LatestActivities';
 import DashboardItem from './DashboardItem';
 import ActivityTypes from './ActivityTypes';
+import Statistics from './Statistics';
+import logger from '@/logger';
 
 
 const getLastMonthActivities = async (
@@ -21,7 +23,9 @@ const getLastMonthActivities = async (
 const Dashboard = async () => {
 
   const token = await getAccessToken();
+  const athlete = await getLoggedInAthlete();
   const activities = await getLastMonthActivities(token);
+  const stats = await getStats(athlete.id, token);
 
   return (
     <div className='flex flex-wrap items-start justify-between w-full'>
@@ -33,6 +37,9 @@ const Dashboard = async () => {
       </DashboardItem>
       <DashboardItem title="Activity types" width={1}>
         <ActivityTypes activities={activities} />
+      </DashboardItem>
+      <DashboardItem title="Year to Date" width={2}>
+        <Statistics stats={stats} />
       </DashboardItem>
     </div>
   )

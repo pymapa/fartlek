@@ -216,3 +216,26 @@ export const activitySchema = z.object({
 });
 
 export const getActivitiesResponseSchema = z.array(activitySummarySchema);
+
+const totalsSchema = z.object({
+  count: z.number(),
+  distance: z.number(),
+  moving_time: z.number(),
+  elapsed_time: z.number(),
+  elevation_gain: z.number(),
+  achievement_count: z.number().nullish(),
+});
+
+export const statsSchema = z.object({
+  biggest_ride_distance: z.number(),
+  biggest_climb_elevation_gain: z.number(),
+  recent_ride_totals: totalsSchema,
+  all_ride_totals: totalsSchema,
+  recent_run_totals: totalsSchema,
+  all_run_totals: totalsSchema,
+  recent_swim_totals: totalsSchema,
+  all_swim_totals: totalsSchema,
+  ytd_ride_totals: totalsSchema,
+  ytd_run_totals: totalsSchema,
+  ytd_swim_totals: totalsSchema,
+});

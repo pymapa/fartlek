@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { activitySchema, activitySummarySchema, polylineMapSchema, sportTypeSchema } from "../schemas/strava";
+import { activitySchema, activitySummarySchema, polylineMapSchema, sportTypeSchema, statsSchema } from "../schemas/strava";
 
 type SportType = z.infer<typeof sportTypeSchema>;
 
@@ -9,4 +9,6 @@ type ActivityDetails = z.infer<typeof activitySchema>;
 
 type PolylineMap = z.infer<typeof polylineMapSchema>;
 
-export type { SportType, ActivitySummary, ActivityDetails, PolylineMap };
+type Stats = z.infer<typeof statsSchema>;
+
+export type { SportType, ActivitySummary, ActivityDetails, PolylineMap, Stats };

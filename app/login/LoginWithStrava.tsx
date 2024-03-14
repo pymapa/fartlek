@@ -1,7 +1,7 @@
 'use client';
 import Image from "next/image";
 import React from "react";
-import stravaIcon from "/public/icons/strava-icon.svg";
+import stravaIcon from "@/public/icons/strava-icon.svg";
 import { signIn } from "next-auth/react";
 
 const callbackUrl = "/dashboard";

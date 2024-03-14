@@ -1,5 +1,4 @@
 import { getServerSession } from "next-auth";
-import { getToken } from "next-auth/jwt";
 import Image from "next/image";
 import React from "react";
 

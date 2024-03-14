@@ -50,6 +50,7 @@ const callBacks: NextAuthOptions["callbacks"] = {
     if (account && user) {
       token.accessToken = account.access_token;
       token.refreshToken = account.refresh_token;
+      token.athlete = account.athlete;
       if (account.expires_at) {
         token.accessTokenExpires = account.expires_at;
       }
@@ -66,6 +67,7 @@ const callBacks: NextAuthOptions["callbacks"] = {
   session: async ({ session, token }) => {
     logger.debug("Session callback");
     session.accessToken = token.accessToken;
+    session.athlete = token.athlete;
     return session;
   },
 };
@@ -100,4 +102,13 @@ const getAccessToken = async (): Promise<string> => {
   return session?.accessToken;
 }
 
-export { authOptions, auth, getAccessToken };
+const getLoggedInAthlete = async (): Promise<StravaProfile> => {
+  const session = await auth();
+  if (!session || !session.athlete) {
+    logger.error("Athlete not found");
+    throw new Error("Athlete not found");
+  }
+  return session?.athlete;
+}
+
+export { authOptions, auth, getAccessToken, getLoggedInAthlete };
