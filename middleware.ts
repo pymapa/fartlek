@@ -1,7 +1,7 @@
 import { withAuth } from "next-auth/middleware"
 
-const protectedRoutes = [
-  "/dashboard"
+const publicRoutes = [
+  "/login",
 ]
 
 export default withAuth(
@@ -11,12 +11,14 @@ export default withAuth(
     callbacks: {
       authorized: ({ req, token }) => {
         if (
-          protectedRoutes.includes(req.nextUrl.pathname) &&
-          token === null
+          publicRoutes.includes(req.nextUrl.pathname)
         ) {
+          return true
+        } else if (token) {
+          return true
+        } else {
           return false
         }
-        return true
       }
     }
   }
