@@ -3,6 +3,7 @@ import React, { useEffect } from "react";
 import { ActivitySummary } from "../lib/types/strava";
 import * as d3 from "d3";
 import Link from "next/link";
+import { formatSeconds } from "../lib/utils";
 
 const dravChart = (activities: ActivitySummary[]) => {
   const getMaxElapsedTime = (activities: ActivitySummary[]) => {
@@ -85,9 +86,7 @@ const SidePanel = ({ activities }: { activities: ActivitySummary[] }) => {
       <div className="w-full">
         <div className="stat">
           <h3 className="stat-value text-accent">
-            {new Date(getCumulativeMinutes(activities) * 1000)
-              .toISOString()
-              .substring(11, 19)}
+            {formatSeconds(getCumulativeMinutes(activities))}
           </h3>
           <div className="stat-title">Cumulative moving time</div>
         </div>

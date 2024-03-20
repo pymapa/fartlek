@@ -110,12 +110,12 @@ export const activitySummarySchema = z.object({
   weighted_average_watts: z.number().optional(),
 });
 
-const athleteSchema = z.object({
+export const athleteSchema = z.object({
   id: z.number(),
   resource_state: z.number(),
 });
 
-const lapSchema = z.object({
+export const lapSchema = z.object({
   id: z.number(),
   resource_state: z.number(),
   name: z.string(),
@@ -142,7 +142,7 @@ const lapSchema = z.object({
   max_heartrate: z.number(),
 });
 
-const photosSchema = z.object({
+export const photosSchema = z.object({
   primary: z.nullable(z.unknown()),
   count: z.number(),
 });
