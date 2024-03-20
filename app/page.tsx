@@ -1,8 +1,18 @@
+import { redirect } from "next/navigation";
+import { auth } from "./lib/auth";
 
-export default function Home() {
+const Home = async () => {
+  const session = await auth();
+  if (!session) {
+    redirect("/login");
+  }
+
+  redirect("/dashboard");
+
   return (
     <main className="">
-      <h1>Fartlek</h1>
     </main>
   );
 }
+
+export default Home;

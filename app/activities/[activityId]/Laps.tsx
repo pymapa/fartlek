@@ -47,7 +47,7 @@ const LapRow = ({
         <p>{formatSeconds(lap.elapsed_time)}</p>
       </div>
       <div className="w-2/12">
-        <p>{lap.average_heartrate}</p>
+        <p>{lap.average_heartrate.toFixed()}</p>
       </div>
       <div className="w-2/12">
         <p>{formatSpeed(lap.average_speed, activityType, true)}</p>
