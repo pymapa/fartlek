@@ -2,6 +2,7 @@
 import React from "react";
 import { ActivitySummary } from "../lib/types/strava";
 import Link from "next/link";
+import { formatDate, formatSeconds } from "../lib/utils";
 
 const LatestActivities = ({
   activities,
@@ -41,14 +42,12 @@ const ActivityRow = ({ activity }: { activity: ActivitySummary }) => {
       <div>
         <h3 className="text-accent font-bold">{activity.name}</h3>
         <p>
-          {Intl.DateTimeFormat("fi-FI").format(new Date(activity.start_date))}
+          {formatDate(activity.start_date)}
         </p>
       </div>
       <div>
         <p>
-          {new Date(activity.moving_time * 1000)
-            .toISOString()
-            .substring(11, 19)}
+          {formatSeconds(activity.moving_time)}
         </p>
       </div>
       <OverlayButton visible={isHovered} activityId={activity.id} />

@@ -25,8 +25,30 @@ export const metersToKilometers = (meters: number) => {
 };
 
 // Time utils
+/**
+ * Function to format seconds to HH:MM:SS
+ */
 export const formatSeconds = (seconds: number) => {
   const date = new Date(0);
   date.setSeconds(seconds);
-  return date.toISOString().substring(11, 19);
+  const timeString = date.toISOString().substring(11, 19);
+  return timeString.startsWith("00:") ? timeString.substring(3) : timeString;
 };
+
+/**
+ * Function to format date to YYYY-MM-DD
+ * @param date 
+ * @returns 
+ */
+export const removeTimeFromDate = (date: string): string => {
+  return date.split("T")[0];
+}
+
+/**
+ * Function to format date to Finnish date format (D.M.YYYY)
+ * @param date 
+ * @returns 
+ */
+export const formatDate = (date: string): string => {
+  return Intl.DateTimeFormat("fi-FI").format(new Date(date));
+}
